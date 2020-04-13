@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDate;
-
 /**
  * Horaire
  */

@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Terrain
  */
@@ -38,16 +37,8 @@ public class Terrain extends RepresentationModel<Terrain> implements Serializabl
 
 
     @JsonProperty("tarifs")
-    private List<Tarif> tarifs;
+    private Tarifs tarifs;
 
-
-    public Terrain addTarifsItem(Tarif tarifsItem) {
-        if (this.tarifs == null) {
-            this.tarifs = new ArrayList<>();
-        }
-        this.tarifs.add(tarifsItem);
-        return this;
-    }
 
     @Valid
 
