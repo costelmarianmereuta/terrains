@@ -12,6 +12,7 @@ public class TerrainAssembler implements RepresentationModelAssembler<TerrainEnt
         return Terrain.builder()
                 .name(entity.getNomTerrain())
                 .actif(entity.isActif())
+                .tarifs(entity.getTarifs())
                 .build();
     }
 }

@@ -1,12 +1,13 @@
 package com.tennis.terrains.entities;
 
+import com.tennis.terrains.model.Tarifs;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "terrains", uniqueConstraints = {
@@ -24,8 +25,10 @@ public class TerrainEntity {
     private String nomTerrain;
     @Column(name = "actif")
     private boolean actif;
+    @Transient
+    private Tarifs tarifs;
+    @ElementCollection(fetch = FetchType.EAGER)
+    Set<String> tarifsNames;
     @ElementCollection
-    List<Long> tarifsIds;
-    @ElementCollection
-    List<Long> horairesIds;
+    Set<String> horairesNames;
 }
