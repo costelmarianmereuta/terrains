@@ -12,9 +12,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Tarif
  */
@@ -82,14 +79,6 @@ public class Tarif extends RepresentationModel<Tarif> implements Serializable {
 
 
     @JsonProperty("terrains")
-    private List<Terrain> terrains;
+    private Terrains terrains;
 
-
-    public Tarif addTerrainsItem(Terrain terrainsItem) {
-        if (this.terrains == null) {
-            this.terrains = new ArrayList<>();
-        }
-        this.terrains.add(terrainsItem);
-        return this;
-    }
 }

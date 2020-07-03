@@ -8,9 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
+import javax.validation.Valid;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Error
+ * Tarifs
  */
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -18,19 +22,22 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Error extends RepresentationModel<Error> implements Serializable {
+public class Tarifs extends RepresentationModel<Tarifs> implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
-    @JsonProperty("uuid")
-    private String uuid;
+    @Valid
 
 
-    @JsonProperty("exceptionType")
-    private String exceptionType;
+    @JsonProperty("tarifList")
+    private List<Tarif> tarifList;
 
 
-    @JsonProperty("message")
-    private String message;
-
+    public Tarifs addTarifListItem(Tarif tarifListItem) {
+        if (this.tarifList == null) {
+            this.tarifList = new ArrayList<>();
+        }
+        this.tarifList.add(tarifListItem);
+        return this;
+    }
 }

@@ -3,7 +3,6 @@ package com.tennis.terrains.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-
 /**
  * allow to set the time per hour or per minutes for the reservation in minutes
  */

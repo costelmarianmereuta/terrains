@@ -129,9 +129,11 @@ components:
           type: string
           example: "Error message"
     Tarifs:
-      type: array
-      items:
-        $ref: "#/components/schemas/Tarif"
+      properties:
+        tarifList:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tarif"
 
 
     RequestBodyTerrain:
@@ -149,9 +151,11 @@ components:
           $ref: "#/components/schemas/Names"
 
     Terrains:
-      type: array
-      items:
-        $ref: "#/components/schemas/Terrain"
+      properties:
+        terrainsList:
+          type: array
+          items:
+            $ref: "#/components/schemas/Terrain"
 
 
     Terrain:
