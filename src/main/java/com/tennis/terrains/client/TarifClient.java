@@ -29,7 +29,6 @@ public class TarifClient {
                 }
 
         );
-
         return tarifsList.getBody();
     }
 }
