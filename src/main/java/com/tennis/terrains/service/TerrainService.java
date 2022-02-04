@@ -5,6 +5,7 @@ import com.tennis.terrains.entities.TerrainEntity;
 import com.tennis.terrains.model.RequestBodyTerrain;
 import com.tennis.terrains.model.Tarif;
 import com.tennis.terrains.model.Tarifs;
+import com.tennis.terrains.model.UpdateRequestBodyTerrain;
 import com.tennis.terrains.repositories.TerrainRepository;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.tennis.terrains.utils.Constants.TARIF_NOT_FOUND;
 import static com.tennis.terrains.utils.Constants.TERRAIN_NOT_FOUND;
 
 @Service
@@ -71,4 +74,27 @@ public class TerrainService {
         }
     }
 
+    public TerrainEntity updateTerrain(UpdateRequestBodyTerrain requestBodyTerrain) {
+        TerrainEntity terrainEntity = terrainRepository.findById(requestBodyTerrain.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, TERRAIN_NOT_FOUND));
+        if (!ObjectUtils.isEmpty(requestBodyTerrain.getNameTerrain())) {
+            terrainEntity.setNomTerrain(requestBodyTerrain.getNameTerrain());
+        }
+        if (requestBodyTerrain.getActif() != null) {
+            terrainEntity.setActif(requestBodyTerrain.getActif());
+        }
+        if (!CollectionUtils.isEmpty(requestBodyTerrain.getNamesTarifs())) {
+            Tarifs tarifs = Optional.of(tarifClient.getTarifs(requestBodyTerrain.getNamesTarifs())).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, TARIF_NOT_FOUND));
+            terrainEntity.setTarifsNames(tarifs.getTarifList().stream().map(Tarif::getName).collect(Collectors.toSet()));
+        }
+
+        //todo check with horaires after
+        terrainRepository.save(terrainEntity);
+        return terrainRepository.findById(requestBodyTerrain.getId()).orElse(null);
+    }
+
+
+    public String deleteTerrain(Long id) {
+        terrainRepository.deleteById(id);
+        return "terrain with id " + id + "deleted";
+    }
 }

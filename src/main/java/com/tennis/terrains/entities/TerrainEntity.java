@@ -25,10 +25,10 @@ public class TerrainEntity {
     private String nomTerrain;
     @Column(name = "actif")
     private boolean actif;
-    @Transient
-    private Tarifs tarifs;
-    @ElementCollection(fetch = FetchType.EAGER)
-    Set<String> tarifsNames;
+    @ElementCollection
+    private Set<String> tarifsNames;
     @ElementCollection
     Set<String> horairesNames;
+    @Transient
+    private Tarifs tarifs;
 }

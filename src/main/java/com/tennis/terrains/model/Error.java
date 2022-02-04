@@ -19,18 +19,18 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Data
 public class Error extends RepresentationModel<Error> implements Serializable {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
 
-    @JsonProperty("uuid")
-    private String uuid;
+  @JsonProperty("uuid")
+  private String uuid;
 
 
-    @JsonProperty("exceptionType")
-    private String exceptionType;
+  @JsonProperty("exceptionType")
+  private String exceptionType;
 
 
-    @JsonProperty("message")
-    private String message;
+  @JsonProperty("message")
+  private String message;
 
 }

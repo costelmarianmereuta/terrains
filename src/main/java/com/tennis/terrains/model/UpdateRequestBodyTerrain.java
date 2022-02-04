@@ -8,12 +8,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.RepresentationModel;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * RequestBodyTerrain
+ * UpdateRequestBodyTerrain
  */
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -21,21 +21,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RequestBodyTerrain extends RepresentationModel<RequestBodyTerrain> implements Serializable {
+public class UpdateRequestBodyTerrain extends RepresentationModel<UpdateRequestBodyTerrain> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@NotNull
+
+	@JsonProperty("id")
+	private Long id;
 
 
 	@JsonProperty("nameTerrain")
 	private String nameTerrain;
 
 
+	@JsonProperty("actif")
+	private Boolean actif;
+
+
 	@JsonProperty("namesHoraire")
 	private List<String> namesHoraire;
 
 
-	public RequestBodyTerrain addNamesHoraireItem(String namesHoraireItem) {
+	public UpdateRequestBodyTerrain addNamesHoraireItem(String namesHoraireItem) {
 		if (this.namesHoraire == null) {
 			this.namesHoraire = new ArrayList<>();
 		}
@@ -48,7 +54,7 @@ public class RequestBodyTerrain extends RepresentationModel<RequestBodyTerrain> 
 	private List<String> namesTarifs;
 
 
-	public RequestBodyTerrain addNamesTarifsItem(String namesTarifsItem) {
+	public UpdateRequestBodyTerrain addNamesTarifsItem(String namesTarifsItem) {
 		if (this.namesTarifs == null) {
 			this.namesTarifs = new ArrayList<>();
 		}

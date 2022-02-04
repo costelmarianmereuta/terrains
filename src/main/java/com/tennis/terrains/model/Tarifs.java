@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Tarifs
  */
@@ -23,21 +22,21 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class Tarifs extends RepresentationModel<Tarifs> implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
 
-    @Valid
+	@Valid
 
 
-    @JsonProperty("tarifList")
-    private List<Tarif> tarifList;
+	@JsonProperty("tarifList")
+	private List<Tarif> tarifList;
 
 
-    public Tarifs addTarifListItem(Tarif tarifListItem) {
-        if (this.tarifList == null) {
-            this.tarifList = new ArrayList<>();
-        }
-        this.tarifList.add(tarifListItem);
-        return this;
-    }
+	public Tarifs addTarifListItem(Tarif tarifListItem) {
+		if (this.tarifList == null) {
+			this.tarifList = new ArrayList<>();
+		}
+		this.tarifList.add(tarifListItem);
+		return this;
+	}
 }

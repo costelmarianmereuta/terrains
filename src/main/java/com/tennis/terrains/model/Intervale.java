@@ -9,31 +9,31 @@ import lombok.Getter;
 @Getter
 public enum Intervale {
 
-    NUMBER_15(15),
+  NUMBER_15(15),
 
-    NUMBER_30(30),
+  NUMBER_30(30),
 
-    NUMBER_60(60);
+  NUMBER_60(60);
 
-    private Integer value;
+  private Integer value;
 
-    Intervale(Integer value) {
-        this.value = value;
+  Intervale(Integer value) {
+    this.value = value;
+  }
+
+  @Override
+  @JsonValue
+  public String toString() {
+    return String.valueOf(value);
+  }
+
+  @JsonCreator
+  public static Intervale fromValue(Integer value) {
+    for (Intervale b : Intervale.values()) {
+      if (b.value.equals(value)) {
+        return b;
+      }
     }
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static Intervale fromValue(Integer value) {
-        for (Intervale b : Intervale.values()) {
-            if (b.value.equals(value)) {
-                return b;
-            }
-        }
-        throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
+    throw new IllegalArgumentException("Unexpected value '" + value + "'");
+  }
 }

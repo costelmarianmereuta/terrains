@@ -12,7 +12,6 @@ import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Terrains
  */
@@ -23,21 +22,21 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class Terrains extends RepresentationModel<Terrains> implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+
+  
+	@Valid
 
 
-    @Valid
+	@JsonProperty("terrainsList")
+	private List<Terrain> terrainsList;
 
 
-    @JsonProperty("terrainsList")
-    private List<Terrain> terrainsList;
-
-
-    public Terrains addTerrainsListItem(Terrain terrainsListItem) {
-        if (this.terrainsList == null) {
-            this.terrainsList = new ArrayList<>();
-        }
-        this.terrainsList.add(terrainsListItem);
-        return this;
-    }
+	public Terrains addTerrainsListItem(Terrain terrainsListItem) {
+		if (this.terrainsList == null) {
+			this.terrainsList = new ArrayList<>();
+		}
+		this.terrainsList.add(terrainsListItem);
+		return this;
+	}
 }

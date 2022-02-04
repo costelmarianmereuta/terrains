@@ -5,9 +5,8 @@ import com.tennis.terrains.entities.TerrainEntity;
 import com.tennis.terrains.model.RequestBodyTerrain;
 import com.tennis.terrains.model.Terrain;
 import com.tennis.terrains.model.Terrains;
-import com.tennis.terrains.repositories.TerrainRepository;
+import com.tennis.terrains.model.UpdateRequestBodyTerrain;
 import com.tennis.terrains.service.TerrainService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,11 +49,16 @@ public class TerrainController {
         return ResponseEntity.ok(terrainAssembler.toModel(terrain));
     }
 
-    @Autowired
-    TerrainRepository terrainRepository;
-
-    @GetMapping("/test")
-    public String get(@RequestParam String terrain) {
-        return terrainRepository.findByTarifsNames(terrain).toString();
+    @PutMapping()
+    public ResponseEntity<Terrain> updateTerrains(@RequestBody UpdateRequestBodyTerrain requestBodyTerrain) {
+        TerrainEntity terrain = terrainService.updateTerrain(requestBodyTerrain);
+        return ResponseEntity.ok(terrainAssembler.toModel(terrain));
     }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<String> deleteTerrain(@PathVariable Long id) {
+        String message = terrainService.deleteTerrain(id);
+        return ResponseEntity.ok(message);
+    }
+
 }

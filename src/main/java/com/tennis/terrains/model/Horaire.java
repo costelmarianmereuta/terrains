@@ -22,36 +22,36 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class Horaire extends RepresentationModel<Horaire> implements Serializable {
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
 
-    @JsonProperty("nameHoraire")
-    private String nameHoraire;
+  @JsonProperty("nameHoraire")
+  private String nameHoraire;
 
 
-    @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
+  @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
 
-    @JsonProperty("startTime")
-    private String startTime;
-
-
-    @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
-
-    @JsonProperty("endTime")
-    private String endTime;
+  @JsonProperty("startTime")
+  private String startTime;
 
 
-    @Valid
+  @Pattern(regexp = "(?:[01]\\d|2[0123]):(?:[012345]\\d)")
+
+  @JsonProperty("endTime")
+  private String endTime;
 
 
-    @JsonProperty("dateHoraireSpecial")
-    private LocalDate dateHoraireSpecial;
+  @Valid
 
 
-    @Valid
+  @JsonProperty("dateHoraireSpecial")
+  private LocalDate dateHoraireSpecial;
 
 
-    @JsonProperty("intervaleTemps")
-    private Intervale intervaleTemps = Intervale.NUMBER_30;
+  @Valid
+
+
+  @JsonProperty("intervaleTemps")
+  private Intervale intervaleTemps = Intervale.NUMBER_30;
 
 }
